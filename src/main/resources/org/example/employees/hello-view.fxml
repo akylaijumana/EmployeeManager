@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.employees.EmployeeController">
+    <!-- Title Label -->
+    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Employee Management System" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="10" />
+
+    <!-- TableView for displaying employees -->
+    <TableView fx:id="employeeTable" prefHeight="300" prefWidth="600" style="-fx-background-color: beige;" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="50">
+        <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="200" text="Name" />
+            <TableColumn fx:id="typeColumn" prefWidth="150" text="Employee Type" />
+            <TableColumn fx:id="salaryColumn" prefWidth="150" text="Salary" />
+        </columns>
+    </TableView>
+
+    <!-- Employee Data Entry Form -->
+    <VBox spacing="10" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="360">
+        <!-- Name and Type Fields -->
+        <HBox spacing="10">
+            <VBox spacing="5">
+                <Label text="Name:" />
+                <TextField fx:id="nameField" promptText="Enter name" style="-fx-background-color: purple;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Type:" />
+                <ComboBox fx:id="typeComboBox" onAction="#handleTypeSelection" promptText="Select type" style="-fx-background-color: beige;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Full-time" />
+                            <String fx:value="Part-time" />
+                            <String fx:value="Contractor" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
+        </HBox>
+
+        <!-- Hourly Rate, Hours Worked / Max Hours, and Annual Salary Fields -->
+        <HBox spacing="10">
+            <VBox spacing="5">
+                <Label text="Hourly Rate:" />
+                <TextField fx:id="hourlyRateField" promptText="Enter hourly rate" style="-fx-background-color: purple;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Hours Worked / Max Hours:" />
+                <TextField fx:id="hoursWorkedField" promptText="Enter hours worked or max hours" style="-fx-background-color: purple;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Annual Salary:" />
+                <TextField fx:id="annualSalaryField" promptText="Enter annual salary" style="-fx-background-color: purple;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Max Hours (Contractor):" />
+                <TextField fx:id="maxHoursField" promptText="Enter max hours" style="-fx-background-color: purple;" />
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Buttons for Add, Calculate Salaries, and Remove Employee -->
+    <HBox spacing="10" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="510">
+        <Button fx:id="addButton" onAction="#addEmployee" style="-fx-background-color: red;" text="Add Employee" />
+        <Button fx:id="calculateButton" onAction="#updateSalaries" style="-fx-background-color: red;" text="Calculate Salaries" />
+        <Button fx:id="removeButton" disable="true" onAction="#removeEmployee" style="-fx-background-color: red;" text="Remove Employee" />
+    </HBox>
+</AnchorPane>
